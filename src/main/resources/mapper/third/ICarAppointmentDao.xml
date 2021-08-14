@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.third.ICarAppointmentDao">
+    <!--配置resultMap对应java类-->
+    <resultMap id="appointment" type="com.example.bean.CarAppointment">
+        <id column="id" javaType="java.lang.Integer" jdbcType="INTEGER" property="appointmentId"/>
+        <result column="name" javaType="java.lang.String" jdbcType="VARCHAR" property="name"/>
+        <result column="phone" javaType="java.lang.String" jdbcType="VARCHAR" property="phone"/>
+        <result column="number" javaType="java.lang.String" jdbcType="VARCHAR" property="number"/>
+        <result column="vip" javaType="java.lang.Boolean" jdbcType="BOOLEAN" property="vip"/>
+        <result column="datetime" javaType="java.util.Date" jdbcType="DATE" property="datetime"/>
+    </resultMap>
+    <!--插入数据-->
+    <insert id="insert" parameterType="java.util.List">
+        insert into appointment (id,name,phone,number,vip,datetime)
+        values
+        <!--遍历list-->
+        <foreach collection="list" item="cp" separator=",">
+            (
+            #{cp.appointmentId},
+            #{cp.name},
+            #{cp.phone},
+            #{cp.number},
+            #{cp.vip},
+            #{cp.datetime}
+            )
+        </foreach>
+    </insert>
+    <!--删除数据-->
+    <delete id="delete">
+        delete from appointment
+        where 1=1
+        <!--拼接查询字段-->
+        <if test="cp!=null">
+            <!--查询字段id-->
+            <if test="cp.appointmentId!=null">and id=#{cp.appointmentId}</if>
+            <!--查询字段name-->
+            <if test="cp.name!=null and cp.name!=''">and name=#{cp.name}</if>
+            <!--查询字段phone-->
+            <if test="cp.phone!=null and cp.phone!=''">and phone=#{cp.phone}</if>
+            <!--查询字段number-->
+            <if test="cp.number!=null and cp.number!=''">and number=#{cp.number}</if>
+            <!--查询字段vip-->
+            <if test="cp.vip!=null">and vip=#{cp.vip}</if>
+            <!--查询字段datetime-->
+            <if test="cp.datetime!=null">and datetime=#{cp.datetime}</if>
+            <!--无查询字段-->
+            <if test="cp.appointmentId==null and (cp.name==null or cp.name=='') and (cp.phone==null or cp.phone=='') and (cp.number==null or cp.number=='') and cp.vip==null and cp.datetime==null">
+                and 1!=1
+            </if>
+        </if>
+    </delete>
+    <update id="update">
+        <if test="u!=null and (u.name!=null and u.name!='') or (u.phone!=null and u.phone!='') or (u.number!=null and u.number!='') or u.vip!=null or u.datetime!=null">
+            update appointment set
+            <!--拼接更新字段，更新字段name-->
+            <if test="u.name!=null">name=#{u.name},</if>
+            <!--更新字段phone-->
+            <if test="u.phone!=null">phone=#{u.phone},</if>
+            <!--更新字段number-->
+            <if test="u.number!=null">number=#{u.number}</if>
+            <!--更新字段vip-->
+            <if test="u.vip!=null">vip=#{u.vip}</if>
+            <!--更新字段datetime-->
+            <if test="u.datetime!=null">datetime=#{u.datetime}</if>
+            where 1=1
+            <!--拼接查询字段-->
+            <if test="q!=null">
+                <!--查询字段id-->
+                <if test="q.appointmentId!=null">and id=#{q.appointmentId}</if>
+                <!--查询字段name-->
+                <if test="q.name!=null and q.name!=''">and name=#{q.name}</if>
+                <!--查询字段phone-->
+                <if test="q.phone!=null and q.phone!=''">and phone=#{q.phone}</if>
+                <!--查询字段number-->
+                <if test="q.number!=null and q.number!=''">and number=#{q.number}</if>
+                <!--查询字段vip-->
+                <if test="q.vip!=null">and vip=#{q.vip}</if>
+                <!--查询字段datetime-->
+                <if test="q.datetime!=null">and datetime=#{q.datetime}</if>
+                <!--无查询字段-->
+                <if test="q.appointmentId==null and (q.name==null or q.name=='') and (q.phone==null or q.phone=='') and (q.number==null or q.number=='') and q.vip==null and q.datetime==null">
+                    and 1!=1
+                </if>
+            </if>
+        </if>
+    </update>
+    <select id="query" resultMap="appointment">
+        select * from appointment
+        where 1=1
+        <!--拼接查询字段-->
+        <if test="cp!=null">
+            <!--查询字段id-->
+            <if test="cp.appointmentId!=null">and id=#{cp.appointmentId}</if>
+            <!--查询字段name-->
+            <if test="cp.name!=null and cp.name!=''">and name=#{cp.name}</if>
+            <!--查询字段phone-->
+            <if test="cp.phone!=null and cp.phone!=''">and phone=#{cp.phone}</if>
+            <!--查询字段number-->
+            <if test="cp.number!=null and cp.number!=''">and number=#{cp.number}</if>
+            <!--查询字段vip-->
+            <if test="cp.vip!=null">and vip=#{cp.vip}</if>
+            <!--查询字段datetime-->
+            <if test="cp.datetime!=null">and datetime &lt;=#{cp.datetime}</if>
+            <!--无查询字段-->
+            <if test="cp.appointmentId==null and (cp.name==null or cp.name=='') and (cp.phone==null or cp.phone=='') and (cp.number==null or cp.number=='') and cp.vip==null and cp.datetime==null">
+                and 1=1
+            </if>
+        </if>
+    </select>
+</mapper>

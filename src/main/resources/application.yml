@@ -1,0 +1,34 @@
+# application.yml
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    first:
+      jdbc-url: jdbc:mysql://localhost:3306/carSys?useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8
+      username: root
+      password: 19961203
+      driver-class-name: com.mysql.jdbc.Driver
+    second:
+      jdbc-url: jdbc:postgresql://localhost:5432/carsys
+      username: postgres
+      password: 19961203
+      driver-class-name: org.postgresql.Driver
+    third:
+      jdbc-url: jdbc:mysql://localhost:3306/appointmentSys?useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8
+      username: root
+      password: 19961203
+      driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  first:
+    mapper-locations: classpath:mapper/first/*.xml
+  second:
+    mapper-locations: classpath:mapper/second/*.xml
+  third:
+    mapper-locations: classpath:mapper/third/*.xml
+#  type-aliases-package: com.example.bean
+#  config-location: classpath:Config.xml
+
+
