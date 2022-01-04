@@ -90,4 +90,21 @@ public class CarServiceTest {
             System.out.println(car.toString());
         }
     }
+
+    @Test
+    public void dQueryBySingletonModel(){
+        //查询所有(单例模式）
+        List<Car> cars = service.queryAllInSingletonMode();
+        System.out.println("（单例模式）查询所有: 数量"+cars.size());
+        for(Car car:cars){
+            System.out.println(car.toString());
+        }
+        //查询所有SUV
+        String[] queryValues = new String[]{"SUV"};
+        cars = service.queryByTypeInSingletonMode(queryValues);
+        System.out.println("（单例模式）查询所有SUV: 数量"+cars.size());
+        for(Car car:cars){
+            System.out.println(car.toString());
+        }
+    }
 }

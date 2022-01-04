@@ -1,10 +1,17 @@
 package com.example.bean;
 
+/**
+ * 汽车配件实体类
+ *
+ * @Author Zhang Chenyang
+ * @Date 2022/01/04 20:43
+ * @Version 1.0
+ */
 public class CarAccessories {
-    Integer accessoriesId;
-    String brand, accessoriesName;
-    Boolean availability;
-    Float price;
+    private Integer accessoriesId;
+    private String brand, accessoriesName;
+    private Boolean availability;
+    private Float price;
 
     public CarAccessories(Integer accessoriesId, String brand, String accessoriesName, Boolean availability, Float price) {
         this.accessoriesId = accessoriesId;
@@ -14,7 +21,8 @@ public class CarAccessories {
         this.price = price;
     }
 
-    public CarAccessories(){}
+    public CarAccessories() {
+    }
 
     public Integer getAccessoriesId() {
         return accessoriesId;

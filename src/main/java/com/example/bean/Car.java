@@ -1,9 +1,16 @@
 package com.example.bean;
 
+/**
+ * 汽车数据实体类
+ *
+ * @Author Zhang Chenyang
+ * @Date 2022/01/04 20:43
+ * @Version 1.0
+ */
 public class Car {
-    Integer carId;
-    String brand, type;
-    Float price;
+    private Integer carId;
+    private String brand, type;
+    private Float price;
 
     public Car(Integer carId, String brand, String type, Float price) {
         this.carId = carId;
@@ -12,7 +19,8 @@ public class Car {
         this.price = price;
     }
 
-    public Car() {}
+    public Car() {
+    }
 
     public Integer getCarId() {
         return carId;

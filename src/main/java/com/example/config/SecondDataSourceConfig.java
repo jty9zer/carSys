@@ -16,6 +16,13 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
+/**
+ * 车辆配件数据库配置类 （PostgreSQL)
+ *
+ * @Author Zhang Chenyang
+ * @Date 2022/01/04 20:43
+ * @Version 1.0
+ */
 @Configuration
 @MapperScan(basePackages = "com.example.dao.second", sqlSessionTemplateRef = "secondSqlSessionTemplate")
 public class SecondDataSourceConfig {
@@ -24,11 +31,11 @@ public class SecondDataSourceConfig {
     private String secondMapperPath;
 
     /**
+     * @return javax.sql.DataSource
      * @Author jason.tang
      * @Description: 根据配置文件，注入数据源
      * @Date: 15:53 2019/2/13
      * @Param []
-     * @return javax.sql.DataSource
      */
     @Bean(name = "secondDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.second")
@@ -37,11 +44,11 @@ public class SecondDataSourceConfig {
     }
 
     /**
+     * @return org.apache.ibatis.session.SqlSessionFactory
      * @Author jason.tang
      * @Description: 注入SqlSessionFactory，指定数据源和映射文件路径
      * @Date: 15:54 2019/2/13
      * @Param [dataSource]
-     * @return org.apache.ibatis.session.SqlSessionFactory
      */
     @Bean(name = "secondSqlSessionFactory")
     public SqlSessionFactory sqlSessionFactory(@Qualifier("secondDataSource") DataSource dataSource) throws Exception {
@@ -53,11 +60,11 @@ public class SecondDataSourceConfig {
     }
 
     /**
+     * @return org.springframework.jdbc.datasource.DataSourceTransactionManager
      * @Author jason.tang
      * @Description: 注入DataSourceTransactionManager事物管理器
      * @Date: 15:55 2019/2/13
      * @Param [dataSource]
-     * @return org.springframework.jdbc.datasource.DataSourceTransactionManager
      */
     @Bean(name = "secondTransactionManager")
     public DataSourceTransactionManager transactionManager(@Qualifier("secondDataSource") DataSource dataSource) {
@@ -65,11 +72,11 @@ public class SecondDataSourceConfig {
     }
 
     /**
+     * @return org.mybatis.spring.SqlSessionTemplate
      * @Author jason.tang
      * @Description: 注入SqlSessionTemplate模板
      * @Date: 15:55 2019/2/13
      * @Param [sqlSessionFactory]
-     * @return org.mybatis.spring.SqlSessionTemplate
      */
     @Bean(name = "secondSqlSessionTemplate")
     public SqlSessionTemplate sqlSessionTemplate(@Qualifier("secondSqlSessionFactory") SqlSessionFactory sqlSessionFactory) {

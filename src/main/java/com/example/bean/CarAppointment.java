@@ -4,18 +4,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;;
 
+/**
+ * 维修预约记录实体类
+ *
+ * @Author Zhang Chenyang
+ * @Date 2022/01/04 20:43
+ * @Version 1.0
+ */
 public class CarAppointment {
-    Integer appointmentId;
-    String name, phone, number;
-    Boolean vip;
-    Date datetime;
+    private Integer appointmentId;
+    private String name, phone, number;
+    private Boolean vip;
+    private Date datetime;
 
     public CarAppointment(Integer appointmentId, String name, String phone, String number, Boolean vip, String datetimeStr) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date datetime = null;
-        try{
-            datetime=simpleDateFormat.parse(datetimeStr);
-        }catch (ParseException e){
+        try {
+            datetime = simpleDateFormat.parse(datetimeStr);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         this.appointmentId = appointmentId;

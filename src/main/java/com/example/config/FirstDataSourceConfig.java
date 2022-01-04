@@ -17,6 +17,13 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
+/**
+ * 车辆数据库配置类（MySQL）
+ *
+ * @Author Zhang Chenyang
+ * @Date 2022/01/04 20:43
+ * @Version 1.0
+ */
 @Configuration
 @MapperScan(basePackages = "com.example.dao.first", sqlSessionTemplateRef = "firstSqlSessionTemplate")
 public class FirstDataSourceConfig {
@@ -25,11 +32,11 @@ public class FirstDataSourceConfig {
     private String firstMapperPath;
 
     /**
+     * @return javax.sql.DataSource
      * @Author jason.tang
      * @Description: 根据配置文件，注入数据源
      * @Date: 15:53 2019/2/13
      * @Param []
-     * @return javax.sql.DataSource
      */
     @Bean(name = "firstDataSource")
     @Primary
@@ -39,11 +46,11 @@ public class FirstDataSourceConfig {
     }
 
     /**
+     * @return org.apache.ibatis.session.SqlSessionFactory
      * @Author jason.tang
      * @Description: 注入SqlSessionFactory，指定数据源和映射文件路径
      * @Date: 15:54 2019/2/13
      * @Param [dataSource]
-     * @return org.apache.ibatis.session.SqlSessionFactory
      */
     @Bean(name = "firstSqlSessionFactory")
     @Primary
@@ -56,11 +63,11 @@ public class FirstDataSourceConfig {
     }
 
     /**
+     * @return org.springframework.jdbc.datasource.DataSourceTransactionManager
      * @Author jason.tang
      * @Description: 注入DataSourceTransactionManager事物管理器
      * @Date: 15:55 2019/2/13
      * @Param [dataSource]
-     * @return org.springframework.jdbc.datasource.DataSourceTransactionManager
      */
     @Bean(name = "firstTransactionManager")
     @Primary
@@ -69,11 +76,11 @@ public class FirstDataSourceConfig {
     }
 
     /**
+     * @return org.mybatis.spring.SqlSessionTemplate
      * @Author jason.tang
      * @Description: 注入SqlSessionTemplate模板
      * @Date: 15:55 2019/2/13
      * @Param [sqlSessionFactory]
-     * @return org.mybatis.spring.SqlSessionTemplate
      */
     @Bean(name = "firstSqlSessionTemplate")
     @Primary
